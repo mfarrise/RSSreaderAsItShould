@@ -1,5 +1,6 @@
 # 📰 CoryFlow — RSS News Ticker
 
+named after the ""botom feeding"" fish Corydoras
 A lightweight Python desktop app that displays RSS feeds as a scrolling news ribbon at the bottom of your screen — inspired by TV news tickers.
 
 Built as part of a personal learning project.
