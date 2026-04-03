@@ -13,6 +13,7 @@ class SettingsWindow(QWidget):
         self.font_color=""
         self.window_opacity=1.0
         self.font_size=None
+        self.window_height=40
 
         # self.setFixedSize(800,600)
         self.setWindowTitle("Settings")
@@ -40,6 +41,13 @@ class SettingsWindow(QWidget):
         self.opacity_line_edit.returnPressed.connect(self.update_opacity)
         self.opacity_line_edit.textChanged.connect(self.update_opacity)
 
+
+        self.window_height_label = QLabel("Window Height")
+        self.window_height_line_edit = QLineEdit()
+        self.window_height_line_edit.setValidator(QIntValidator())
+        self.window_height_line_edit.setText(str(self.main_window.window_height))
+        self.window_height_line_edit.textChanged.connect(self.update_window_height)
+
         self.okay_button = QPushButton("Okay")
         self.okay_button.clicked.connect(self.update_json_and_close)
 
@@ -49,6 +57,8 @@ class SettingsWindow(QWidget):
         self.layout.addWidget(self.font_size_line_edit)
         self.layout.addWidget(self.opacity_label)
         self.layout.addWidget(self.opacity_line_edit)
+        self.layout.addWidget(self.window_height_label)
+        self.layout.addWidget(self.window_height_line_edit)
         self.layout.addWidget(self.okay_button)
     def pick_back_ground_color(self):
         self.back_ground_color = pick_color()
@@ -76,6 +86,11 @@ class SettingsWindow(QWidget):
             self.window_opacity = float(int(self.opacity_line_edit.text())/100)
             self.main_window.setWindowOpacity(self.window_opacity)
             self.settings_dict["opacity"] = self.window_opacity
+    def update_window_height(self):
+        if self.window_height_line_edit.text():
+            self.window_height=int(self.window_height_line_edit.text())
+            self.main_window.setFixedHeight(self.window_height)
+            self.settings_dict["window_height"] = self.window_height
 
     def update_json_and_close(self):
         write_json("settings.json", self.settings_dict)

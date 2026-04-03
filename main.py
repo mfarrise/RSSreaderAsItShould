@@ -16,10 +16,11 @@ class MyRibbon(QWidget):
         super().__init__()
         self.default_settings_dict = {
             "back_ground_color": "blue",
-            "font_color": "white",
-            "font_size": 12,
+            "font_color": "yellow",
+            "font_size": 21,
             "opacity": 1,
-            "speed": 2
+            "speed": 2,
+            "window_height":40
         }
 
         self.settings_dict= load_json("settings.json",self.default_settings_dict)
@@ -30,6 +31,7 @@ class MyRibbon(QWidget):
         self.font_size=self.settings_dict["font_size"]
         self.font_color=self.settings_dict["font_color"]
         self.window_opacity=self.settings_dict["opacity"]
+        self.window_height =self.settings_dict["window_height"]
 
         self.settings_window=None
         self.counter=-1
@@ -56,7 +58,7 @@ class MyRibbon(QWidget):
 
         self.screen_geo=QApplication.primaryScreen().availableGeometry()
         self.x_location=self.screen_geo.width()
-        self.window_height=40
+
         self.setGeometry(0,self.screen_geo.height(),self.screen_geo.width(),self.window_height)
         
                 
