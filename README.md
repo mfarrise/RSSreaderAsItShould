@@ -12,7 +12,7 @@ Built as part of a personal learning project.
 * 🧵 Smooth horizontal scrolling ticker
 * 🖱️ Interactive controls (mouse + keyboard)
 * 🧩 Minimal, distraction-free UI
-* ⚙️ Configurable via JSON (GUI editor coming later)
+* ⚙️ adding feeds via JSON (GUI editor coming later)
 
 ---
 
