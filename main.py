@@ -1,5 +1,6 @@
 import os
 import random
+import re
 import sys
 import webbrowser
 
@@ -93,6 +94,7 @@ class MyRibbon(QWidget):
             self.counter=0
         if not self.news_list:
             return ["looking for news",""]
+        self.news_list[self.counter][0]=re.sub(r"<.*?>", "", self.news_list[self.counter][0])
         return self.news_list[self.counter]
         #return 1 item of the list which itself a list of two items [string, link]
         
