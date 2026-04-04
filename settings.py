@@ -1,5 +1,7 @@
 from PySide6.QtGui import QIntValidator, QFont, QFontMetrics
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QGridLayout, QPushButton, QLabel, QLineEdit
+
+from WindowPositionManipulations import center_window
 from colorPicker import pick_color
 from jsonResolve import load_json,write_json
 
@@ -60,6 +62,7 @@ class SettingsWindow(QWidget):
         self.layout.addWidget(self.window_height_label)
         self.layout.addWidget(self.window_height_line_edit)
         self.layout.addWidget(self.okay_button)
+        center_window(self)
     def pick_back_ground_color(self):
         self.back_ground_color = pick_color()
         self.main_window.back_ground_color = self.back_ground_color
