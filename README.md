@@ -37,17 +37,6 @@ Feeds are currently added manually via JSON.
 * On first run, configuration files will be generated automatically.
 * If you don’t see any JSON files yet — just run the app once.
 
-Example:
-
-```json
- [
-    "https://example.com/feed",
-    "https://another-feed.com/rss"
-  ]
-
-```
-
-> GUI-based feed management is planned for a future update.
 
 ---
 
@@ -79,7 +68,6 @@ This project is part of a broader effort to:
 
 ## 🔮 Planned Improvements
 
-* GUI for managing RSS feeds
 * Better text formatting and truncation
 * font family selection
 * now its UBUNTU u can change it if u dont want in main.py
