@@ -13,6 +13,7 @@ from settings import SettingsWindow
 from jsonResolve import load_json
 
 class MyRibbon(QWidget):
+
     def __init__(self):
         super().__init__()
         self.default_settings_dict = {
@@ -24,7 +25,7 @@ class MyRibbon(QWidget):
             "window_height":40
         }
 
-        self.settings_dict= load_json(get_base_dir()+"settings.json",self.default_settings_dict)
+        self.settings_dict= load_json(self.get_settings_path(),self.default_settings_dict)
 
         self.back_ground_color = self.settings_dict["back_ground_color"]
         self.scroll_speed=self.settings_dict["speed"] #the one from the settings
@@ -143,7 +144,11 @@ class MyRibbon(QWidget):
         if event.key() == Qt.Key_Escape:
             print("Escape pressed")
             self.close()
-
+    def get_settings_path(self):
+        base = os.getenv("APPDATA")  # e.g. C:\Users\...\AppData\Roaming
+        app_dir = os.path.join(base, "CoryStream")
+        os.makedirs(app_dir, exist_ok=True)
+        return os.path.join(app_dir, "settings.json")
 
 
 
@@ -166,6 +171,16 @@ if __name__ == '__main__':
 
 
 #corystream
+#
+# pyinstaller main.py \
+# --noconfirm \
+# --onedir \
+# --console \
+# --copy-metadata PySide6 \
+# --distpath build_output/dist \
+# --workpath build_output/build \
+# --specpath build_output
+
 #
 # pyinstaller main.py \
 # --noconfirm \

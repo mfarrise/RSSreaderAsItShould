@@ -6,21 +6,25 @@ from colorPicker import pick_color
 from editFeedsJson import edit_feeds_window
 from getBaseDir import get_base_dir
 from jsonResolve import load_json,write_json
+import os
+import sys
+
 
 class SettingsWindow(QWidget):
+
     def __init__(self,main_window):
         super().__init__()
         self.main_window = main_window
 
-        self.settings_dict = load_json(get_base_dir()+"settings.json", self.main_window.settings_dict)
+        self.settings_dict = load_json(self.get_settings_path(), self.main_window.settings_dict)
         self.back_ground_color=""
         self.font_color=""
         self.window_opacity=1.0
         self.font_size=None
         self.window_height=40
 
-        # self.setFixedSize(800,600)
-        self.setWindowTitle("Settings")
+        self.setFixedSize(300,300)
+        self.setWindowTitle("CoryStream by M arise")
         self.layout = QGridLayout()
         self.setLayout(self.layout)
 
@@ -105,5 +109,10 @@ class SettingsWindow(QWidget):
         self.edit_feeds_window=edit_feeds_window()
         self.edit_feeds_window.show()
     def update_json_and_close(self):
-        write_json(get_base_dir()+"settings.json", self.settings_dict)
+        write_json(self.get_settings_path(), self.settings_dict)
         self.close()
+    def get_settings_path(self):
+        base = os.getenv("APPDATA")  # e.g. C:\Users\...\AppData\Roaming
+        app_dir = os.path.join(base, "CoryStream")
+        os.makedirs(app_dir, exist_ok=True)
+        return os.path.join(app_dir, "settings.json")
